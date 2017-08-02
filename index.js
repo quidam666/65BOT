@@ -32,7 +32,11 @@ pg.defaults.ssl = true
 var pool = new pg.Pool()
 // connection using created pool
 pool.connect(function (err, client, done) {
-    if (err) throw err
+    if (err) {
+     console.log(err)   
+     throw err
+    }
+
     console.log('Connected to postgres! Getting schemas...')
     mPgClient = client
 })
