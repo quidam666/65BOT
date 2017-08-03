@@ -28,29 +28,18 @@ const CHANNEL_ACCESS_TOKEN = '6KWMG7l3JRt1VEVHPIv0+pGZemFqFok/B2n/7tu+m6LefSjX2I
 const CHANNEL_ID = '1504900799'
 const CHANNEL_SECRET = '232e88ea9edbbad44de3049656f84867'
 
+
 pg.defaults.ssl = true
-var pool = new pg.Pool()
-// connection using created pool
-pool.connect(process.env.DATABASE_URL, function (err, client, done) {
-    if (err) {
-        console.log(err)
-        //  throw err
-    }
-
+pg.connect(process.env.DATABASE_URL, function (err, client) {
+    if (err) throw err
     console.log('Connected to postgres! Getting schemas...')
+
     mPgClient = client
+    // pgClient.query('SELECT * FROM activity')
+    //     .on('row', function (row) {
+    //         console.log(JSON.stringify(row));
+    //     });
 })
-
-// pg.connect(process.env.DATABASE_URL, function (err, client) {
-//     if (err) throw err
-//     console.log('Connected to postgres! Getting schemas...')
-
-//     mPgClient = client
-//     // pgClient.query('SELECT * FROM activity')
-//     //     .on('row', function (row) {
-//     //         console.log(JSON.stringify(row));
-//     //     });
-// })
 
 var bot = linebot({
     channelId: CHANNEL_ID,
