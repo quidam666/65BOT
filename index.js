@@ -31,7 +31,7 @@ const CHANNEL_SECRET = '232e88ea9edbbad44de3049656f84867'
 pg.defaults.ssl = true
 var pool = new pg.Pool()
 // connection using created pool
-pool.connect(function (err, client, done) {
+pool.connect(process.env.DATABASE_URL, function (err, client, done) {
     if (err) {
         console.log(err)
         //  throw err
