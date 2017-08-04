@@ -9,20 +9,20 @@ module.exports = {
     getWelfare: function (city, identity, need_care, need_assistive) {
         var conditionString =
             module.exports.getwelfareConditionURL(city, identity, need_care, need_assistive)
+                .then(function (result) {
+                    console.log('[Client getWelfare] ' + conditionString)
 
-        console.log('[Client getWelfare] ' + conditionString)
+                    var options = {
+                        uri: conditionString,
+                        method: 'GET'
+                    };
 
-        var options = {
-            uri: conditionString,
-            method: 'GET'
-        };
-
-        request(options, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                console.log(body.id) // Print the shortened url.
-            }
-        })
-
+                    request(options, function (error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                            console.log(body.id) // Print the shortened url.
+                        }
+                    })
+                })
     },
 
     getwelfareConditionURL: function (city, identity, need_care, need_assistive) {
