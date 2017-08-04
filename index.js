@@ -2,6 +2,7 @@ var linebot = require('linebot')
 var express = require('express')
 var hsBOT = require("./hsbot.js")
 var hsDataHelper = require("./dataHelper.js")
+var client = require("./client.js")
 var pg = require('pg')
 var request = require("request");
 var bodyParser = require('body-parser');
@@ -11,10 +12,10 @@ var mPgClient
 var mZone
 var mCurrentAction
 
-const ACTION_ACTIVITY = "找活動"
 const ACTION_RESOURCE = "找福利"
-const ACTION_GROUP = "揪團"
+const ACTION_ACTIVITY = "找活動"
 const ACTION_CONSULT = "專業諮詢"
+const ACTION_CHALLANGE = "每日挑戰"
 
 const TPE_ZONE_ARRAY = ["中正", "中正區", "大同", "大同區", "中山", "中山區", "松山", "松山區", "大安", "大安區", "萬華", "萬華區", "信義", "信義區", "士林", "士林區", "北投", "北投區",
     "內湖", "內湖區", "南港", "南港區", "文山", "文山區"]
@@ -35,10 +36,6 @@ pg.connect(process.env.DATABASE_URL, function (err, client) {
     console.log('Connected to postgres! Getting schemas...')
 
     mPgClient = client
-    // pgClient.query('SELECT * FROM activity')
-    //     .on('row', function (row) {
-    //         console.log(JSON.stringify(row));
-    //     });
 })
 
 var bot = linebot({
@@ -191,8 +188,12 @@ function checkZone(zone) {
     return (TPE_ZONE_ARRAY.includes(zone) || NEWTPE_ZONE_ARRAY.includes(zone))
 }
 
-function logReceiveMessage(userId, message) {
+function getWelfare() {
+    client.getWelfare("新北市","id_low_income","true","true")
+}
 
+
+function logReceiveMessage(userId, message) {
     console.log('(logReceiveMessage) ' + userId + ' ' + message)
 
     var options = {
@@ -245,4 +246,3 @@ var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port
     console.log("App now running on port", port)
 })
-
