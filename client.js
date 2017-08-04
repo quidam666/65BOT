@@ -39,7 +39,7 @@ module.exports = {
         var conditionString =
             module.exports.getwelfareConditionURL(city, identity, need_care, need_assistive)
 
-        console.log('[Client getWelfare] ' + host + conditionString)
+        console.log('[Client getWelfare] ' + host + encodeURIComponent(conditionString))
 
         var options = {
             url: host + conditionString,
