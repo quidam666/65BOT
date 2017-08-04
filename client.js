@@ -7,8 +7,7 @@ var host = "https://65info.tw/api/welfare?"
 
 module.exports = {
     getwelfareConditionURL: function (city, identity, need_care, need_assistive) {
-        console.log('[Client getwelfareConditionURL]')
-
+    
         var conditionURL
         var addConditionString = "&conditions[]="
 
@@ -57,9 +56,8 @@ module.exports = {
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             // console.log('body:', body); // Print the HTML for the Google homepage.
             walfare = JSON.parse(body)
-            console.log('walfare:'+ walfare);
+            console.log('walfare: '+ walfare);
+            return walfare
         })
-
-        return walfare
     }
 }
