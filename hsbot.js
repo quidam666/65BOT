@@ -2,7 +2,7 @@ const util = require('util')
 
 module.exports = {
     showWelcomeText: function (event, userProfile) {
-        event.reply({ type: 'text', text: '哈囉，' + userProfile.displayName + ' 歡迎使用HOMESEEN-失智家庭小幫手，來看看我們為您精選的資訊吧！\n\n\n請按下方「HOMESEEN 主選單」開始' })
+        event.reply({ type: 'text', text: '哈囉，' + userProfile.displayName + ' 歡迎使用銀髮生活小幫手，來看看我們為您精選的資訊吧！' })
     },
 
     askLocation: function (event) {
@@ -19,6 +19,51 @@ module.exports = {
 
     showApplyInfo: function (event, applyText) {
         event.reply({ type: 'text', text: '請聯絡：' + applyText })
+    },
+
+    askLocationWithCarousel: function (event) {
+        event.reply({
+            type: 'template',
+            altText: '請問您的居住地是？',
+            template: {
+                type: 'carousel',
+                columns: [{
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '我住北北基',
+                    text: '',
+                    actions: [{
+                        type: 'postback',
+                        label: '台北',
+                        data: '台北'
+                    }, {
+                        type: 'postback',
+                        label: '新北',
+                        data: '新北'
+                    }, {
+                        type: 'postback',
+                        label: '基隆',
+                        data: '基隆'
+                    }]
+                }, {
+                    thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
+                    title: '我住桃竹苗',
+                    text: '',
+                    actions: [{
+                        type: 'postback',
+                        label: '桃園',
+                        data: '桃園'
+                    }, {
+                        type: 'postback',
+                        label: '新竹',
+                        data: '新竹'
+                    }, {
+                        type: 'postback',
+                        label: '苗栗',
+                        data: '苗栗'
+                    }]
+                }]
+            }
+        })
     },
 
     getBenefitWithButtons: function (event, userProfile) {
