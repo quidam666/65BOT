@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var Botmetrics = require('botmetrics');
 
 var mPgClient
-var mZone
+var mCity
 var mCurrentAction
 
 const ACTION_WELFARE = "找福利"
@@ -21,12 +21,13 @@ const CHANNEL_ACCESS_TOKEN = 'Z7Zy5/U+eCOUq8QfUyNlCb2zGc8mYsb4Oec9YLOvSYBu6eoi/F
 const CHANNEL_ID = '1528157130'
 const CHANNEL_SECRET = 'dc7226b76dab1aa9eff8c4c8aa45ca58'
 
+const CITY_ARRAY = ["台北市", "新北市", "基隆", "桃園", "新竹", "苗栗", "台中", "彰化", "南投", "雲林", "嘉義", "台南", "高雄", "屏東", "宜蘭", "花蓮", "台東", "澎湖", "金門", "連江"]
+
 pg.defaults.ssl = true
 pg.connect(process.env.DATABASE_URL, function (err, client) {
     if (err) throw err
-    console.log('Connected to postgres! Getting schemas...')
-
     mPgClient = client
+    console.log('Connected to postgres! Getting schemas...')
 })
 
 var bot = linebot({
@@ -66,7 +67,6 @@ bot.on('message', function (event) {
                 hsDataHelper.saveUser(mPgClient, userProfile)
                 hsBOT.showWelcomeText(event, userProfile)
             } else {
-
                 var isMessageFromAction = isAction(message)
 
                 console.log('(on message) isMessageFromAction ' + isMessageFromAction)
@@ -74,7 +74,6 @@ bot.on('message', function (event) {
 
                 if (isMessageFromAction === true) {
                     mCurrentAction = message
-
                     console.log('(on message) mCurrentAction (2) ' + mCurrentAction)
 
                     switch (mCurrentAction) {
@@ -92,20 +91,21 @@ bot.on('message', function (event) {
                             break
 
                         case ACTION_CONSULT:
-                            console.log('專業專業')
                             hsBOT.getConsultCarousel(event)
                             break
                     }
                 } else if (mCurrentAction === undefined && isMessageFromAction === false) {
                     hsBOT.showNonSenseText(event, userProfile)
+                } else if (message === "其他區域") {
+                    hsBOT.showMoreCityCarousel(event)
                 } else {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
                             findActivities(event, message, userProfile)
                             break;
 
-                        case ACTION_:
-                            hsBOT.showNonSenseText(event, userProfile)
+                        case ACTION_WELFARE:
+                            findWelfares(event, message, userProfile)
                             break
 
                         case ACTION_GROUP:
@@ -126,40 +126,27 @@ function isAction(message) {
     if (message === ACTION_ACTIVITY || message === ACTION_WELFARE
         || message === ACTION_CHALLANGE || message === ACTION_CONSULT) {
         return true
-
     } else {
         return false
     }
 }
 
 function findActivities(event, activityMessage, userProfile) {
-
     hsDataHelper.getUser(mPgClient, userProfile.userId, function (result) {
         var user = result[0]
-        if (checkZone(activityMessage) === true) {
-            mZone = activityMessage
+        if (checkCity(activityMessage) === true) {
+            mCity = activityMessage
             console.log("user.location " + user.location)
-            console.log("user.location.includes? " + user.location.includes(mZone))
+            console.log("user.location.includes? " + user.location.includes(mCity))
 
-            if (user.location === undefined || user.location.includes(mZone) == false) {
-                // ask if user wanna add this area to their favorite
-                hsBOT.showAddLocationToFavoriteDialog(event, mZone);
-            } else {
-                showActivities(event, mPgClient, user, mZone)
-            }
+            showActivities(event, mPgClient, user, mCity)
 
-        } else if (activityMessage === "好啊！") {
-            // save user location
-            hsDataHelper.saveUserLocation(mPgClient, user, mZone, function () {
-                // show content in carousel
-                showActivities(event, mPgClient, user, mZone)
-            })
-
-        } else if (activityMessage === "暫時不要") {
-            // show content in carousel
-            showActivities(event, mPgClient, user, mZone)
-        } else {
-            hsBOT.showComingSoonText(event, user)
+            // if (user.location === undefined || user.location.includes(mCity) == false) {
+            //     // ask if user wanna add this area to their favorite
+            //     hsBOT.showAddLocationToFavoriteDialog(event, mCity);
+            // } else {
+            //     showActivities(event, mPgClient, user, mCity)
+            // }
         }
     })
 }
@@ -175,6 +162,10 @@ function showActivities(event, pgClient, userProfile, zone) {
 
 function getIndex(str) {
     return str.split('=')[1];
+}
+
+function checkCity(city) {
+    return (CITY_ARRAY.includes(city))
 }
 
 function checkZone(zone) {

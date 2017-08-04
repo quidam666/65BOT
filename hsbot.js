@@ -29,16 +29,16 @@ module.exports = {
                 type: 'carousel',
                 columns: [{
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: '請選擇您居住的城市',
+                    title: '請選擇您居住的區域',
                     text: '我來自尊爵不凡的天龍國，北北基！',
                     actions: [{
                         type: 'postback',
-                        label: '台北',
-                        data: '台北'
+                        label: '台北市',
+                        data: '台北市'
                     }, {
                         type: 'postback',
-                        label: '新北',
-                        data: '新北'
+                        label: '新北市',
+                        data: '新北市'
                     }, {
                         type: 'postback',
                         label: '基隆',
@@ -46,7 +46,7 @@ module.exports = {
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
-                    title: '請選擇您居住的城市',
+                    title: '請選擇您居住的區域',
                     text: '我來自桃竹苗！名產有米粉、擂茶、還有...暫時想不到',
                     actions: [{
                         type: 'postback',
@@ -63,7 +63,7 @@ module.exports = {
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: '請選擇您居住的城市',
+                    title: '請選擇您居住的區域',
                     text: '我來自中彰投！慶記、肉圓跟日月潭的家',
                     actions: [{
                         type: 'postback',
@@ -80,7 +80,7 @@ module.exports = {
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: '請選擇您居住的城市',
+                    title: '請選擇您居住的區域',
                     text: '我來自雲嘉南！路邊隨便吃都是美食的地方',
                     actions: [{
                         type: 'postback',
@@ -97,7 +97,7 @@ module.exports = {
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: '請選擇您居住的城市',
+                    title: '請選擇您居住的區域',
                     text: '我來自高屏地區！熱歸熱但是我們有風，臺北你們有嗎 (挑眉)',
                     actions: [{
                         type: 'postback',
@@ -109,8 +109,8 @@ module.exports = {
                         data: '屏東'
                     }, {
                         type: 'postback',
-                        label: '其他',
-                        data: '其他'
+                        label: '其它區域',
+                        data: '其它區域'
                     }]
                 }]
             }
@@ -170,7 +170,7 @@ module.exports = {
                         label: '中化',
                         data: '中化'
                     }, {
-                         type: 'postback',
+                        type: 'postback',
                         label: '了解更多',
                         data: '了解更多_喘息'
                     }]
@@ -284,8 +284,76 @@ module.exports = {
                     text: '暫時不要'
                 }]
             }
-        });
+        })
     },
+
+    askIfNeedCare: function (event) {
+        event.reply({
+            type: 'template',
+            altText: '請問是否有照護需求呢？',
+            template: {
+                type: 'confirm',
+                text: '請問是有照護需求呢？',
+                actions: [{
+                    type: 'message',
+                    label: '有的',
+                    text: '有照護需求'
+                }, {
+                    type: 'message',
+                    label: '沒有',
+                    text: '無照護需求'
+                }]
+            }
+        })
+    },
+
+    askIfNeedAssistive: function (event) {
+        event.reply({
+            type: 'template',
+            altText: '請問是否有輔具需求呢？',
+            template: {
+                type: 'confirm',
+                text: '請問是有輔具需求呢？',
+                actions: [{
+                    type: 'message',
+                    label: '有的',
+                    text: '有輔具需求'
+                }, {
+                    type: 'message',
+                    label: '沒有',
+                    text: '無輔具需求'
+                }]
+            }
+        })
+    },
+
+    askIdentify: function (event) {
+        event.reply({
+            type: 'template',
+            altText: '請選擇您的身份別',
+            template: {
+                type: 'buttons',
+                thumbnailImageUrl: 'https://example.com/bot/images/image.jpg',
+                title: '請選擇您的身份別',
+                text: '選擇您的身份別，讓我們為您找出最適合的福利！',
+                actions: [{
+                    type: 'postback',
+                    label: '一般民眾',
+                    data: '一般民眾'
+                }, {
+                    type: 'postback',
+                    label: '中低收入戶',
+                    data: '中低收入戶'
+                }, {
+                    type: 'postback',
+                    label: '低收入戶',
+                    data: '低收入戶'
+                }]
+            }
+        })
+    },
+
+
 
     showActivitiesInCarousel: function (event, userProfile, zone, activities) {
         var username = userProfile.displayName
