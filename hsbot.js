@@ -32,7 +32,7 @@ module.exports = {
                 columns: [{
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
                     title: '請選擇您居住的城市',
-                    text: '我來自天龍國，北北基',
+                    text: '我來自尊爵不凡的天龍國，北北基！',
                     actions: [{
                         type: 'postback',
                         label: '台北',
@@ -42,7 +42,7 @@ module.exports = {
                         label: '新北',
                         data: '新北'
                     }, {
-                       type: 'postback',
+                        type: 'postback',
                         label: '基隆',
                         data: '基隆'
                     }]
@@ -63,10 +63,10 @@ module.exports = {
                         label: '苗栗',
                         data: '苗栗'
                     }]
-                },{
+                }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
                     title: '請選擇您居住的城市',
-                    text: '我來自中彰投：慶記、肉圓跟日月潭的家',
+                    text: '我來自中彰投！慶記、肉圓跟日月潭的家',
                     actions: [{
                         type: 'postback',
                         label: '台中',
@@ -76,14 +76,14 @@ module.exports = {
                         label: '彰化',
                         data: '彰化'
                     }, {
-                       type: 'postback',
+                        type: 'postback',
                         label: '南投',
                         data: '南投'
                     }]
-                },{
+                }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
                     title: '請選擇您居住的城市',
-                    text: '我來自雲嘉南：路邊隨便吃都是美食的地方',
+                    text: '我來自雲嘉南！路邊隨便吃都是美食的地方',
                     actions: [{
                         type: 'postback',
                         label: '雲林',
@@ -93,14 +93,14 @@ module.exports = {
                         label: '嘉義',
                         data: '嘉義'
                     }, {
-                       type: 'postback',
+                        type: 'postback',
                         label: '台南',
                         data: '台南'
                     }]
-                },{
+                }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
                     title: '請選擇您居住的城市',
-                    text: '我來自高屏地區：熱歸熱但是我們有風，臺北你們有嗎！',
+                    text: '我來自高屏地區！熱歸熱但是我們有風，臺北你們有嗎 (挑眉)',
                     actions: [{
                         type: 'postback',
                         label: '高雄',
@@ -110,59 +110,13 @@ module.exports = {
                         label: '屏東',
                         data: '屏東'
                     }, {
-                       type: 'postback',
+                        type: 'postback',
                         label: '其他',
                         data: '其他'
                     }]
-                },
-            
-            ]
+                },]
             }
-        });
-
-
-        // event.reply({
-        //     type: 'template',
-        //     altText: '請問您的居住地是？',
-        //     template: {
-        //         type: 'carousel',
-        //         columns: [{
-        //             thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-        //             title: '我住北北基',
-        //             text: '',
-        //             actions: [{
-        //                 type: 'postback',
-        //                 label: '台北',
-        //                 data: '台北'
-        //             }, {
-        //                 type: 'postback',
-        //                 label: '新北',
-        //                 data: '新北'
-        //             }, {
-        //                 type: 'postback',
-        //                 label: '基隆',
-        //                 data: '基隆'
-        //             }]
-        //         }, {
-        //             thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
-        //             title: '我住桃竹苗',
-        //             text: '',
-        //             actions: [{
-        //                 type: 'postback',
-        //                 label: '桃園',
-        //                 data: '桃園'
-        //             }, {
-        //                 type: 'postback',
-        //                 label: '新竹',
-        //                 data: '新竹'
-        //             }, {
-        //                 type: 'postback',
-        //                 label: '苗栗',
-        //                 data: '苗栗'
-        //             }]
-        //         }]
-        //     }
-        // })
+        })
     },
 
     getBenefitWithButtons: function (event, userProfile) {
