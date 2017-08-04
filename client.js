@@ -56,7 +56,7 @@ module.exports = {
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             // console.log('body:', body); // Print the HTML for the Google homepage.
             walfare = JSON.parse(body)
-            console.log('walfare: '+ walfare);
+            console.log('walfare: '+ walfare.welfares[0].category);
             return walfare
         })
     }
