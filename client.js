@@ -31,6 +31,8 @@ module.exports = {
         if (need_assistive === true) {
             conditionURL = addConditionString + need_assistive
         }
+
+        return conditionURL
     },
 
         getWelfare: function (city, identity, need_care, need_assistive) {
