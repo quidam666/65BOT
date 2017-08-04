@@ -63,7 +63,60 @@ module.exports = {
                         label: '苗栗',
                         data: '苗栗'
                     }]
-                }]
+                },{
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '請選擇您居住的城市',
+                    text: '我來自中彰投：慶記、肉圓跟日月潭的家',
+                    actions: [{
+                        type: 'postback',
+                        label: '台中',
+                        data: '台中'
+                    }, {
+                        type: 'postback',
+                        label: '彰化',
+                        data: '彰化'
+                    }, {
+                       type: 'postback',
+                        label: '南投',
+                        data: '南投'
+                    }]
+                },{
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '請選擇您居住的城市',
+                    text: '我來自雲嘉南：路邊隨便吃都是美食的地方',
+                    actions: [{
+                        type: 'postback',
+                        label: '雲林',
+                        data: '雲林'
+                    }, {
+                        type: 'postback',
+                        label: '嘉義',
+                        data: '嘉義'
+                    }, {
+                       type: 'postback',
+                        label: '台南',
+                        data: '台南'
+                    }]
+                },{
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '請選擇您居住的城市',
+                    text: '我來自高屏地區：熱歸熱但是我們有風，臺北你們有嗎！',
+                    actions: [{
+                        type: 'postback',
+                        label: '高雄',
+                        data: '高雄'
+                    }, {
+                        type: 'postback',
+                        label: '屏東',
+                        data: '屏東'
+                    }, {
+                       type: 'postback',
+                        label: '其他',
+                        data: '其他'
+                    }]
+                },
+            
+            ]
             }
         });
 
