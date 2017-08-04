@@ -13,7 +13,7 @@ module.exports = {
         var addConditionString = "&conditions[]="
 
         // city
-        conditionURL = "division=" + city
+        conditionURL = "division=" + encodeURIComponent(city)
 
         // identity
         if (identity === "id_low_income") {
@@ -40,7 +40,7 @@ module.exports = {
             module.exports.getwelfareConditionURL(city, identity, need_care, need_assistive)
 
         console.log('[Client getWelfare conditionString] '+ conditionString) 
-        console.log('[Client getWelfare] ' + host + encodeURIComponent(conditionString))
+        console.log('[Client getWelfare] ' + host + conditionString)
 
         var options = {
             url: host + conditionString,
