@@ -99,19 +99,19 @@ bot.on('message', function (event) {
                 } else {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
-                            findActivities(event, message, userProfile)
+                            // findActivities(event, message, userProfile)
                             break;
 
                         case ACTION_WELFARE:
-                            findWelfares(event, message, userProfile)
+                            // findWelfares(event, message, userProfile)
                             break
 
                         case ACTION_GROUP:
-                            hsBOT.showNonSenseText(event, userProfile)
+                            // hsBOT.showNonSenseText(event, userProfile)
                             break
 
                         case ACTION_CONSULT:
-                            hsBOT.showNonSenseText(event, userProfile)
+                            // hsBOT.showNonSenseText(event, userProfile)
                             break
                     }
                 }
@@ -129,10 +129,9 @@ function isAction(message) {
     }
 }
 
-function findActivities(event, activityMessage, userProfile) {
+function findActivities(event, userProfile) {
     hsDataHelper.getUser(mPgClient, userProfile.userId, function (result) {
         var user = result[0]
-        mCity = activityMessage
         console.log("user.location " + user.location)
         console.log("user.location.includes? " + user.location.includes(mCity))
 
@@ -200,6 +199,8 @@ function logReceiveMessage(userId, message) {
 bot.on('postback', function (event) {
     console.log('(postback) ', event)
     if (checkCity(event.postback.data) === true) {
+        mCity = event.postback.data
+
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
                 findActivities(event, message, userProfile)
