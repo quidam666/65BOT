@@ -31,8 +31,8 @@ module.exports = {
                 type: 'carousel',
                 columns: [{
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: '我住北北基',
-                    text: 'description',
+                    title: '請選擇您居住的城市',
+                    text: '我來自天龍國，北北基',
                     actions: [{
                         type: 'postback',
                         label: '台北',
@@ -48,20 +48,20 @@ module.exports = {
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
-                    title: 'this is menu',
-                    text: 'description',
+                    title: '請選擇您居住的城市',
+                    text: '我來自桃竹苗！名產有米粉、擂茶、還有...暫時想不到',
                     actions: [{
                         type: 'postback',
-                        label: 'Buy',
-                        data: 'action=buy&itemid=222'
+                        label: '桃園',
+                        data: '桃園'
                     }, {
                         type: 'postback',
-                        label: 'Add to cart',
-                        data: 'action=add&itemid=222'
+                        label: '新竹',
+                        data: '新竹'
                     }, {
                         type: 'postback',
-                        label: 'Add to cart',
-                        data: 'action=add&itemid=222'
+                        label: '苗栗',
+                        data: '苗栗'
                     }]
                 }]
             }
