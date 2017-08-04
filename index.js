@@ -203,7 +203,7 @@ bot.on('postback', function (event) {
 
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
-                findActivities(event, message, userProfile)
+                findActivities(event, userProfile)
                 break;
 
             case ACTION_WELFARE:
