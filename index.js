@@ -51,7 +51,6 @@ bot.on('follow', function (event) {
 
 bot.on('message', function (event) {
     var userProfile
-    getWelfare()
 
     event.source.profile().then(function (profile) {
         userProfile = profile
@@ -93,7 +92,8 @@ bot.on('message', function (event) {
                             break
 
                         case ACTION_CONSULT:
-
+                            console.log('專業專業')
+                            hsBOT.getConsultCarousel(event)
                             break
                     }
                 } else if (mCurrentAction === undefined && isMessageFromAction === false) {
