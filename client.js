@@ -44,10 +44,9 @@ module.exports = {
         var options = {
             url: host + conditionString,
             headers: {
-                'Host': 'www.65info.tw'
+                'Host': '65info.tw'
             }
         }
-
 
         request(options, function (error, response, body) {
             console.log('error:', error); // Print the error if one occurred
