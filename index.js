@@ -96,8 +96,6 @@ bot.on('message', function (event) {
                     }
                 } else if (mCurrentAction === undefined && isMessageFromAction === false) {
                     hsBOT.showNonSenseText(event, userProfile)
-                } else if (message === "其他區域") {
-                    hsBOT.showMoreCityCarousel(event)
                 } else {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
@@ -134,20 +132,20 @@ function isAction(message) {
 function findActivities(event, activityMessage, userProfile) {
     hsDataHelper.getUser(mPgClient, userProfile.userId, function (result) {
         var user = result[0]
-        if (checkCity(activityMessage) === true) {
-            mCity = activityMessage
-            console.log("user.location " + user.location)
-            console.log("user.location.includes? " + user.location.includes(mCity))
+        mCity = activityMessage
+        console.log("user.location " + user.location)
+        console.log("user.location.includes? " + user.location.includes(mCity))
 
-            showActivities(event, mPgClient, user, mCity)
+        showActivities(event, mPgClient, user, mCity)
 
-            // if (user.location === undefined || user.location.includes(mCity) == false) {
-            //     // ask if user wanna add this area to their favorite
-            //     hsBOT.showAddLocationToFavoriteDialog(event, mCity);
-            // } else {
-            //     showActivities(event, mPgClient, user, mCity)
-            // }
-        }
+        // if (checkCity(activityMessage) === true) {
+        // if (user.location === undefined || user.location.includes(mCity) == false) {
+        //     // ask if user wanna add this area to their favorite
+        //     hsBOT.showAddLocationToFavoriteDialog(event, mCity);
+        // } else {
+        //     showActivities(event, mPgClient, user, mCity)
+        // }
+        // }
     })
 }
 
@@ -201,7 +199,34 @@ function logReceiveMessage(userId, message) {
 
 bot.on('postback', function (event) {
     console.log('(postback) ', event)
-    hsBOT.showApplyInfo(event, event.postback.data)
+    if (checkCity(event.postback.data) === true) {
+        switch (mCurrentAction) {
+            case ACTION_ACTIVITY:
+                findActivities(event, message, userProfile)
+                break;
+
+            case ACTION_WELFARE:
+                findWelfares(event, message, userProfile)
+                break
+        }
+    } else if (event.postback.data === "其他區域") {
+        hsBOT.showMoreCity(event)
+    } else {
+        switch (mCurrentAction) {
+            case ACTION_ACTIVITY:
+                hsBOT.showApplyInfo(event, event.postback.data)
+                break;
+
+            case ACTION_WELFARE:
+                // findWelfares(event, message, userProfile)
+                break
+
+            case ACTION_CONSULT:
+                // findWelfares(event, message, userProfile)
+                break
+        }
+    }
+
 
 })
 
