@@ -22,48 +22,94 @@ module.exports = {
     },
 
     askLocationWithCarousel: function (event) {
+
+
         event.reply({
             type: 'template',
-            altText: '請問您的居住地是？',
+            altText: 'this is a carousel template',
             template: {
                 type: 'carousel',
                 columns: [{
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: '我住北北基',
-                    text: '',
+                    title: 'this is menu',
+                    text: 'description',
                     actions: [{
                         type: 'postback',
-                        label: '台北',
-                        data: '台北'
+                        label: 'Buy',
+                        data: 'action=buy&itemid=111'
                     }, {
                         type: 'postback',
-                        label: '新北',
-                        data: '新北'
+                        label: 'Add to cart',
+                        data: 'action=add&itemid=111'
                     }, {
-                        type: 'postback',
-                        label: '基隆',
-                        data: '基隆'
+                        type: 'uri',
+                        label: 'View detail',
+                        uri: 'http://example.com/page/111'
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
-                    title: '我住桃竹苗',
-                    text: '',
+                    title: 'this is menu',
+                    text: 'description',
                     actions: [{
                         type: 'postback',
-                        label: '桃園',
-                        data: '桃園'
+                        label: 'Buy',
+                        data: 'action=buy&itemid=222'
                     }, {
                         type: 'postback',
-                        label: '新竹',
-                        data: '新竹'
+                        label: 'Add to cart',
+                        data: 'action=add&itemid=222'
                     }, {
-                        type: 'postback',
-                        label: '苗栗',
-                        data: '苗栗'
+                        type: 'uri',
+                        label: 'View detail',
+                        uri: 'http://example.com/page/222'
                     }]
                 }]
             }
-        })
+        });
+
+
+        // event.reply({
+        //     type: 'template',
+        //     altText: '請問您的居住地是？',
+        //     template: {
+        //         type: 'carousel',
+        //         columns: [{
+        //             thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+        //             title: '我住北北基',
+        //             text: '',
+        //             actions: [{
+        //                 type: 'postback',
+        //                 label: '台北',
+        //                 data: '台北'
+        //             }, {
+        //                 type: 'postback',
+        //                 label: '新北',
+        //                 data: '新北'
+        //             }, {
+        //                 type: 'postback',
+        //                 label: '基隆',
+        //                 data: '基隆'
+        //             }]
+        //         }, {
+        //             thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
+        //             title: '我住桃竹苗',
+        //             text: '',
+        //             actions: [{
+        //                 type: 'postback',
+        //                 label: '桃園',
+        //                 data: '桃園'
+        //             }, {
+        //                 type: 'postback',
+        //                 label: '新竹',
+        //                 data: '新竹'
+        //             }, {
+        //                 type: 'postback',
+        //                 label: '苗栗',
+        //                 data: '苗栗'
+        //             }]
+        //         }]
+        //     }
+        // })
     },
 
     getBenefitWithButtons: function (event, userProfile) {
