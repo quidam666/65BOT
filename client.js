@@ -41,8 +41,15 @@ module.exports = {
 
         console.log('[Client getWelfare] ' + host + conditionString)
 
+        var options = {
+            url: host + conditionString,
+            headers: {
+                'Host': 'www.65info.tw'
+            }
+        }
 
-        request(host + conditionString, function (error, response, body) {
+
+        request(options, function (error, response, body) {
             console.log('error:', error); // Print the error if one occurred
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             console.log('body:', body); // Print the HTML for the Google homepage.
