@@ -131,7 +131,7 @@ bot.on('message', function (event) {
 
 function isAction(message) {
     if (message === ACTION_ACTIVITY || message === ACTION_RESOURCE
-        || message === ACTION_GROUP || message === ACTION_CONSULT) {
+        || message === ACTION_CHALLANGE || message === ACTION_CONSULT) {
         return true
 
     } else {
