@@ -11,6 +11,7 @@ var Botmetrics = require('botmetrics');
 var mPgClient
 var mCity
 var mCurrentAction
+var mUserProfile
 
 const ACTION_WELFARE = "找福利"
 const ACTION_ACTIVITY = "找活動"
@@ -39,11 +40,11 @@ var bot = linebot({
 bot.on('follow', function (event) {
     console.log('(on follow) ', event)
     event.source.profile().then(function (profile) {
-        userProfile = profile
-        hsDataHelper.checkIfUserExist(mPgClient, userProfile, function (isExist) {
+        mUserProfile = profile
+        hsDataHelper.checkIfUserExist(mPgClient, mUserProfile, function (isExist) {
             if (isExist === false) {
-                hsDataHelper.saveUser(mPgClient, userProfile)
-                hsBOT.showWelcomeText(event, userProfile)
+                hsDataHelper.saveUser(mPgClient, mUserProfile)
+                hsBOT.showWelcomeText(event, mUserProfile)
             }
         })
     })
@@ -51,21 +52,19 @@ bot.on('follow', function (event) {
 
 
 bot.on('message', function (event) {
-    var userProfile
-
     event.source.profile().then(function (profile) {
-        userProfile = profile
-        hsDataHelper.checkIfUserExist(mPgClient, userProfile, function (isExist) {
+        mUserProfile = profile
+        hsDataHelper.checkIfUserExist(mPgClient, mUserProfile, function (isExist) {
             console.log('(on message) isExist', isExist)
             console.log('(on message) message ', message)
             var message = event.message.text
 
-            logReceiveMessage(userProfile.userId, message)
+            logReceiveMessage(mUserProfile.userId, message)
 
             // New User
             if (isExist === false) {
-                hsDataHelper.saveUser(mPgClient, userProfile)
-                hsBOT.showWelcomeText(event, userProfile)
+                hsDataHelper.saveUser(mPgClient, mUserProfile)
+                hsBOT.showWelcomeText(event, mUserProfile)
             } else {
                 var isMessageFromAction = isAction(message)
 
@@ -203,11 +202,11 @@ bot.on('postback', function (event) {
 
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
-                findActivities(event, userProfile)
+                findActivities(event, mUserProfile)
                 break;
 
             case ACTION_WELFARE:
-                findWelfares(event, message, userProfile)
+                findWelfares(event, message, mUserProfile)
                 break
         }
     } else if (event.postback.data === "其他區域") {
