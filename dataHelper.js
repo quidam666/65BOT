@@ -48,10 +48,10 @@ module.exports = {
             })
     },
 
-    getActivitiesFromDB: function (pgClient, zone, callback) {
-        console.log('(find Activity) ' + zone)
+    getActivitiesFromDB: function (pgClient, city, callback) {
+        console.log('(find Activity) ' + city)
         var activities = []
-        pgClient.query('SELECT * FROM activity WHERE zone=($1)', [zone],function (err, result){
+        pgClient.query('SELECT * FROM activity WHERE city=($1)', [city],function (err, result){
              if (err) {
                 console.log("Failed to ind Activity ");
                 throw err;
