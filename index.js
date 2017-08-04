@@ -94,7 +94,7 @@ bot.on('message', function (event) {
                             break
                     }
                 } else if (mCurrentAction === undefined && isMessageFromAction === false) {
-                    hsBOT.showNonSenseText(event, userProfile)
+                    hsBOT.showNonSenseText(event, mUserProfile)
                 } else {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
@@ -126,25 +126,6 @@ function isAction(message) {
     } else {
         return false
     }
-}
-
-function findActivities(event, userProfile) {
-    hsDataHelper.getUser(mPgClient, userProfile.userId, function (result) {
-        var user = result[0]
-        console.log("user.location " + user.location)
-        console.log("user.location.includes? " + user.location.includes(mCity))
-
-        showActivities(event, mPgClient, user, mCity)
-
-        // if (checkCity(activityMessage) === true) {
-        // if (user.location === undefined || user.location.includes(mCity) == false) {
-        //     // ask if user wanna add this area to their favorite
-        //     hsBOT.showAddLocationToFavoriteDialog(event, mCity);
-        // } else {
-        //     showActivities(event, mPgClient, user, mCity)
-        // }
-        // }
-    })
 }
 
 function showActivities(event, pgClient, userProfile, zone) {
@@ -202,7 +183,7 @@ bot.on('postback', function (event) {
 
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
-                findActivities(event, mUserProfile)
+                showActivities(event, mPgClient, mUserProfile, mCity)
                 break;
 
             case ACTION_WELFARE:

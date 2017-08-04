@@ -356,7 +356,7 @@ module.exports = {
 
 
     showActivitiesInCarousel: function (event, userProfile, zone, activities) {
-        var username = userProfile.displayName
+        var username = userProfile.name
 
         console.log('(Carousel) ' + username)
 
