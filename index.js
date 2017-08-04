@@ -96,7 +96,7 @@ bot.on('message', function (event) {
                             hsBOT.getBenefitWithButtons(event, userProfile)
                             break
 
-                        case ACTION_GROUP:
+                        case ACTION_CHALLANGE:
 
                             break
 
