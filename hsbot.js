@@ -26,25 +26,25 @@ module.exports = {
 
         event.reply({
             type: 'template',
-            altText: 'this is a carousel template',
+            altText: '請問您的居住地是？',
             template: {
                 type: 'carousel',
                 columns: [{
                     thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
-                    title: 'this is menu',
+                    title: '我住北北基',
                     text: 'description',
                     actions: [{
                         type: 'postback',
-                        label: 'Buy',
-                        data: 'action=buy&itemid=111'
+                        label: '台北',
+                        data: '台北'
                     }, {
                         type: 'postback',
-                        label: 'Add to cart',
-                        data: 'action=add&itemid=111'
+                        label: '新北',
+                        data: '新北'
                     }, {
-                        type: 'uri',
-                        label: 'View detail',
-                        uri: 'http://example.com/page/111'
+                       type: 'postback',
+                        label: '基隆',
+                        data: '基隆'
                     }]
                 }, {
                     thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
@@ -59,9 +59,9 @@ module.exports = {
                         label: 'Add to cart',
                         data: 'action=add&itemid=222'
                     }, {
-                        type: 'uri',
-                        label: 'View detail',
-                        uri: 'http://example.com/page/222'
+                        type: 'postback',
+                        label: 'Add to cart',
+                        data: 'action=add&itemid=222'
                     }]
                 }]
             }
