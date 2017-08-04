@@ -190,9 +190,12 @@ function checkZone(zone) {
 }
 
 function getWelfare() {
-    var welfare = client.getWelfare("新北市", "id_low_income", "true", "true")
-    console.log('[Index Getwelfare ]: '+ walfare.welfares[0].category);
-    // console.log('[Index Getwelfare ]' + welfare.welfares[0]);
+    client.getWelfare("新北市", "id_low_income", "true", "true").then(function (result, reject) {
+        var walfare = JSON.parse(result)
+        console.log('[Index Getwelfare ]: ' + walfare.welfares[0].category);
+        // console.log('[Index Getwelfare ]' + welfare.welfares[0]);
+    })
+
 }
 
 
