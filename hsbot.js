@@ -22,8 +22,6 @@ module.exports = {
     },
 
     askLocationWithCarousel: function (event) {
-
-
         event.reply({
             type: 'template',
             altText: '請問您的居住地是？',
@@ -114,7 +112,86 @@ module.exports = {
                         label: '其他',
                         data: '其他'
                     }]
-                },]
+                }]
+            }
+        })
+    },
+
+    getConsultCarousel: function (event) {
+        event.reply({
+            type: 'template',
+            altText: '請選擇您想要的需求',
+            template: {
+                type: 'carousel',
+                columns: [{
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '身體相關',
+                    text: '這裡有專業的治療師團隊，提供您身體健康相關的諮詢服務',
+                    actions: [{
+                        type: 'postback',
+                        label: '愛迪樂團隊',
+                        data: '愛迪樂團隊'
+                    }, {
+                        type: 'postback',
+                        label: '芮宜健康',
+                        data: '芮宜健康'
+                    }, {
+                        type: 'postback',
+                        label: '了解更多',
+                        data: '了解更多_身'
+                    }]
+                }, {
+                    thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
+                    title: '心靈相關',
+                    text: '睡不好，總是覺得焦慮煩躁嗎？這裡有專業心理專家，陪您釐清目前的壓力來源',
+                    actions: [{
+                        type: 'postback',
+                        label: '眼神微亮的秘密',
+                        data: 'jacob'
+                    }, {
+                        type: 'postback',
+                        label: '家總關懷協會',
+                        data: '家總'
+                    }, {
+                        type: 'postback',
+                        label: '了解更多',
+                        data: '了解更多_心'
+                    }]
+                }, {
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '喘息服務諮商',
+                    text: '找不到時間做自己的事嗎？好想休息一下，卻找不到幫手嗎？專業照顧人員來協助您！',
+                    actions: [{
+                        type: 'postback',
+                        label: '到咖手',
+                        data: '到咖手'
+                    }, {
+                        type: 'postback',
+                        label: '中化',
+                        data: '中化'
+                    }, {
+                         type: 'postback',
+                        label: '了解更多',
+                        data: '了解更多_喘息'
+                    }]
+                }, {
+                    thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+                    title: '揪團出遊',
+                    text: '想帶長輩出去玩，卻又不知道可以去哪？長輩行動比較慢，參加一般旅行團又怕大家要等？我們幫你安排最適合家裡的活動！',
+                    actions: [{
+                        type: 'postback',
+                        label: '多扶',
+                        data: '多扶'
+                    }, {
+                        type: 'postback',
+                        label: '智樂活',
+                        data: '智樂活'
+                    }, {
+                        type: 'postback',
+                        label: '了解更多',
+                        data: '了解更多_出遊'
+                    }]
+                }]
             }
         })
     },

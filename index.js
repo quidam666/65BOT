@@ -12,7 +12,7 @@ var mPgClient
 var mZone
 var mCurrentAction
 
-const ACTION_RESOURCE = "找福利"
+const ACTION_WELFARE = "找福利"
 const ACTION_ACTIVITY = "找活動"
 const ACTION_CONSULT = "專業諮詢"
 const ACTION_CHALLANGE = "每日挑戰"
@@ -84,8 +84,8 @@ bot.on('message', function (event) {
                             hsBOT.askLocationWithCarousel(event)
                             break;
 
-                        case ACTION_RESOURCE:
-                            hsBOT.getBenefitWithButtons(event, userProfile)
+                        case ACTION_WELFARE:
+                            hsBOT.askLocationWithCarousel(event)
                             break
 
                         case ACTION_CHALLANGE:
@@ -104,7 +104,7 @@ bot.on('message', function (event) {
                             findActivities(event, message, userProfile)
                             break;
 
-                        case ACTION_RESOURCE:
+                        case ACTION_:
                             hsBOT.showNonSenseText(event, userProfile)
                             break
 
@@ -123,7 +123,7 @@ bot.on('message', function (event) {
 })
 
 function isAction(message) {
-    if (message === ACTION_ACTIVITY || message === ACTION_RESOURCE
+    if (message === ACTION_ACTIVITY || message === ACTION_WELFARE
         || message === ACTION_CHALLANGE || message === ACTION_CONSULT) {
         return true
 
