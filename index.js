@@ -60,6 +60,7 @@ bot.on('follow', function (event) {
 
 bot.on('message', function (event) {
     var userProfile
+    getWelfare()
 
     event.source.profile().then(function (profile) {
         userProfile = profile
