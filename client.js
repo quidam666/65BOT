@@ -10,7 +10,7 @@ module.exports = {
         var conditionString =
             module.exports.getwelfareConditionURL(city, identity, need_care, need_assistive)
 
-        console.log('[Client] ' + conditionString)
+        console.log('[Client getWelfare] ' + conditionString)
 
         var options = {
             uri: conditionString,
@@ -25,8 +25,10 @@ module.exports = {
 
     },
 
-
     getwelfareConditionURL: function (city, identity, need_care, need_assistive) {
+
+        console.log('[Client getwelfareConditionURL]')
+
         var conditionURL
         var addConditionString = "&conditions[]="
 

@@ -190,7 +190,7 @@ function checkZone(zone) {
 }
 
 function getWelfare() {
-    client.getWelfare("新北市","id_low_income","true","true")
+    client.getWelfare("新北市", "id_low_income", "true", "true")
 }
 
 
@@ -208,7 +208,7 @@ function logReceiveMessage(userId, message) {
 
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body.id) // Print the shortened url.
+            console.log('(logReceiveMessage) + body.id ' + body.id) // Print the shortened url.
         }
     })
 }
