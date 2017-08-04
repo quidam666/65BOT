@@ -190,7 +190,8 @@ function checkZone(zone) {
 }
 
 function getWelfare() {
-    client.getWelfare("新北市", "id_low_income", "true", "true")
+    var welfare = client.getWelfare("新北市", "id_low_income", "true", "true")
+    console.log('[Index Getwelfare ]'+ welfare);
 }
 
 
