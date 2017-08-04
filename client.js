@@ -39,7 +39,7 @@ module.exports = {
         var conditionString =
             module.exports.getwelfareConditionURL(city, identity, need_care, need_assistive)
 
-        console.log('[Client getWelfare] ' + conditionString)
+        console.log('[Client getWelfare] ' + host + conditionString)
 
         var options = {
             uri: host + conditionString,
@@ -49,6 +49,8 @@ module.exports = {
         request(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log('[getWelfare] response ' + response) // Print the shortened url.
+            } else{
+                console.log(error)
             }
         })
     }
