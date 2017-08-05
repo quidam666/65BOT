@@ -2,8 +2,8 @@ const util = require('util')
 
 module.exports = {
 
-    showUserText: function(event,message){
-        event.reply({ type: 'text', text: message})
+    repeatUserText: function (event, message) {
+        event.reply({ type: 'text', text: message })
     },
 
     showWelcomeText: function (event, userProfile) {
@@ -375,7 +375,8 @@ module.exports = {
         var columns
         module.exports.getActivityColumns(activities).then(function (result) {
             columns = result
-            console.log('(showActivitiesInCarousel)' + result)
+            console.log('(showActivitiesInCarousel)' + result + userProfile.displayName + " / "
+         + userProfile.name)
             // console.log("(Carousel) getActivityColumns " + util.inspect(columns, false, null))
 
             event.reply({
