@@ -405,6 +405,7 @@ module.exports = {
         } else {
             module.exports.getWelfareColumns(welfares).then(function (result) {
                 console.log("showelfareInCarousel final stage")
+                console.log(columns)
                 columns = result
                 event.reply({
                     type: 'template',
