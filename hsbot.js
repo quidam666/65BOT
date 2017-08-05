@@ -237,11 +237,13 @@ module.exports = {
                 {
                     type: 'postback',
                     label: '我要報名',
-                    data: activities[i].apply.toString()
+                    data: activities[i].apply_contact.toString()
                 }]
             }
             columns.push(activity)
         }
+
+        console.log("(getColumnArray) finish " + columns.length)
         return columns
     },
 
