@@ -22,12 +22,12 @@ module.exports = {
         }
 
         // need care
-        if (need_care === true) {
+        if (need_care === "care_needed") {
             conditionURL = conditionURL + addConditionString + need_care
         }
 
         // need assistive
-        if (need_assistive === true) {
+        if (need_assistive === "assistive_needed") {
             conditionURL = conditionURL + addConditionString + need_assistive
         }
 

@@ -208,7 +208,7 @@ function showActivities(event, pgClient, userProfile, zone) {
 }
 
 function findWelfares(event) {
-    console.log("[Index] (findWelfares) " + mCity + "/" + mIdentity + " / " + mNeedCare + " / " + mNeedAssisive)
+    console.log("[Index] (findWelfares) " + mCity + "/" + mIdentity + "/" + mNeedCare + "/" + mNeedAssisive)
 
     if (mIdentity === undefined) {
         hsBOT.askIdentify(event)
