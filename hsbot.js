@@ -242,7 +242,7 @@ module.exports = {
                 actions: [{
                     type: 'uri',
                     label: '詳細資料',
-                    uri: welfares.welfares[i].detail_url
+                    uri: welfares.welfares[i].url
                 }]
             }
             columns.push(welfare)
