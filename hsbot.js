@@ -378,6 +378,8 @@ module.exports = {
             console.log('(showActivitiesInCarousel)' + zone +" / " + userProfile.displayName)
             // console.log("(Carousel) getActivityColumns " + util.inspect(columns, false, null))
 
+            event.reply({type: 'text', text: '親愛的' + userProfile.displayName + '，這是本月在' + zone + '開的課程：' })
+            
             event.reply({
                 type: 'template',
                 altText: '親愛的' + userProfile.displayName + '，這是本月在' + zone + '開的課程：',
