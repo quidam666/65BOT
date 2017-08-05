@@ -415,7 +415,7 @@ module.exports = {
 
                 event.reply({
                     type: 'template',
-                    altText: '親愛的' + userProfile.displayName + '，這是您可以申請的福利！',
+                    altText: '親愛的',
                     template: {
                         type: 'carousel',
                         columns: result
