@@ -90,9 +90,9 @@ bot.on('message', function (event) {
                             break;
 
                         case ACTION_WELFARE:
-                            mIdentity = undefined
-                            mNeedCare = undefined
-                            mNeedAssisive = undefined
+                            mIdentity = null
+                            mNeedCare = null
+                            mNeedAssisive = null
                             hsBOT.askLocationWithCarousel(event)
                             break
 
@@ -210,11 +210,11 @@ function showActivities(event, pgClient, userProfile, zone) {
 function findWelfares(event) {
     console.log("[Index] (findWelfares) " + mCity + "/" + mIdentity + "/" + mNeedCare + "/" + mNeedAssisive)
 
-    if (mIdentity === undefined) {
+    if (mIdentity == null) {
         hsBOT.askIdentify(event)
-    } else if (mNeedCare === undefined) {
+    } else if (mNeedCare == null) {
         hsBOT.askIfNeedCare(event)
-    } else if (mNeedAssisive === undefined) {
+    } else if (mNeedAssisive == null) {
         hsBOT.askIfNeedAssistive(event)
     } else {
         getWelfare(event, mCity, mIdentity, mNeedCare, mNeedAssisive)
@@ -226,7 +226,7 @@ function getWelfare(city, identity, need_care, need_assisive) {
         var welfares = JSON.parse(result)
         // show welfare
         console.log('[Index getwelfare] ' + welfares.welfares[0])
-        hsBOT.showelfareInCarousel(event,welfares)
+        hsBOT.showelfareInCarousel(event, welfares)
     })
 }
 
