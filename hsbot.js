@@ -1,5 +1,5 @@
 const util = require('util')
-const HOST = "https://65info.tw/"
+const HOST = "https://65info.tw"
 
 module.exports = {
 
@@ -238,13 +238,10 @@ module.exports = {
 
             console.log(welfares.welfares[i])
 
-            console.log("[HSBOT] getWelfareColumnArray " +
-            welfares.welfares[i].name +'/'+ welfares.welfares[i].photo_url)
-
             var activity = {
                 thumbnailImageUrl: HOST + welfares.welfares[i].photo_url,
-                title: welfares.welfares[i].name,
-                text: welfares.welfares[i].institution,
+                title: welfares.welfares[i].institution,
+                text: welfares.welfares[i].name,
                 actions: [{
                     type: 'uri',
                     label: '詳細資料',
