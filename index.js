@@ -129,7 +129,7 @@ function isAction(message) {
 }
 
 function showActivities(event, pgClient, userProfile, zone) {
-    console.log("(showActivities) " + zone)
+    console.log("(showActivities) " + zone + userProfile.displayName)
     // query activities with location
     hsDataHelper.getActivitiesFromDB(pgClient, zone, function (activities) {
         // reply carousel to user

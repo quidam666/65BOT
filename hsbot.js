@@ -250,11 +250,12 @@ module.exports = {
         console.log("(getActivityForJson) " + activities.length)
         var promise = new Promise(function (resolve, reject) {
             var columns
-            if (activities.length > 5) {
-                columns = module.exports.getColumnArray(activities, 0, 5)
-            } else {
-                columns = module.exports.getColumnArray(activities, 0, activities.length)
-            }
+            columns = module.exports.getColumnArray(activities, 0, 5)
+            // if (activities.length > 5) {
+            //     columns = module.exports.getColumnArray(activities, 0, 5)
+            // } else {
+            //     columns = module.exports.getColumnArray(activities, 0, activities.length)
+            // }
             if (columns !== undefined) {
                 resolve(columns);
             }
@@ -356,7 +357,7 @@ module.exports = {
 
 
     showActivitiesInCarousel: function (event, userProfile, zone, activities) {
-        var username = userProfile.name
+        var username = userProfile.displayName
 
         console.log('(Carousel) ' + username)
 
