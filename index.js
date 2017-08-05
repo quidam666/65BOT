@@ -217,15 +217,16 @@ function findWelfares(event) {
     } else if (mNeedAssisive === undefined) {
         hsBOT.askIfNeedAssistive(event)
     } else {
-        getWelfare(mCity, mIdentity, mNeedCare, mNeedAssisive)
+        getWelfare(event, mCity, mIdentity, mNeedCare, mNeedAssisive)
     }
 }
 
 function getWelfare(city, identity, need_care, need_assisive) {
     client.getWelfare(city, identity, need_care, need_assisive).then(function (result, reject) {
-        var welfare = JSON.parse(result)
+        var welfares = JSON.parse(result)
         // show welfare
-        console.log('[Index getwelfare] ' + welfare.welfares[0])
+        console.log('[Index getwelfare] ' + welfares.welfares[0])
+        hsBOT.showelfareInCarousel(event,welfares)
     })
 }
 

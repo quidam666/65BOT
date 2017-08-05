@@ -365,7 +365,10 @@ module.exports = {
         })
     },
 
+    showelfareInCarousel: function(event, welfares){
+        
 
+    },
 
     showActivitiesInCarousel: function (event, userProfile, zone, activities) {
         var username = userProfile.displayName
