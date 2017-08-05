@@ -180,9 +180,8 @@ function checkWelfareCondition(event, condition) {
         mNeedCare = condition
     } else if (condition === "assistive_needed" || condition === "assistive_not_needed") {
         mNeedAssisive = condition
-    } else {
-        findWelfares(event)
     }
+    findWelfares(event)
 }
 
 function isAction(message) {
