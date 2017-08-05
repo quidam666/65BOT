@@ -224,7 +224,7 @@ function getWelfare(event) {
         var welfares = JSON.parse(result)
         // show welfare
         console.log('[Index getwelfare] ' + welfares.welfares[0])
-        hsBOT.showelfareInCarousel(event, welfares)
+        hsBOT.showelfareInCarousel(event, mUserProfile, welfares)
     })
 }
 

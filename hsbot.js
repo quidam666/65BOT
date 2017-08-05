@@ -400,7 +400,7 @@ module.exports = {
         })
     },
 
-    showelfareInCarousel: function (event, welfares) {
+    showelfareInCarousel: function (event, userProfile, welfares) {
         if (welfares.length == 0) {
             event.reply({ type: 'text', text: "目前沒有適合您的福利，請打服務專線 0933-288936，有專人為您服務喔" })
         } else {
