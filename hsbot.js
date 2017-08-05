@@ -249,7 +249,6 @@ module.exports = {
             console.log(welfare)
         }
 
-        console.log(columns)
         console.log("[HSBOT] getWelfareColumnArray " + columns.length)
         return columns
     },
@@ -408,7 +407,7 @@ module.exports = {
             module.exports.getWelfareColumns(welfares).then(function (result) {
                 console.log("showelfareInCarousel final stage")
                 console.log(columns)
-                columns = result
+                columns = resolve
                 event.reply({
                     type: 'template',
                     altText: '親愛的' + userProfile.displayName + '，這是您可以申請的福利！',
@@ -417,6 +416,9 @@ module.exports = {
                         columns: columns
                     }
                 })
+            }).catch(function (error) {
+                // error 
+                console.log('error')
             })
         }
     },
