@@ -86,7 +86,7 @@ bot.on('message', function (event) {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
                             console.log('ACTION_ACTIVITY' + mIdentity + "/" + mNeedCare + "/" + mNeedAssisive)
-                            hsBOT.askLocationWithCarousel(event)
+                            // hsBOT.askLocationWithCarousel(event)
                             break;
 
                         case ACTION_WELFARE:
@@ -94,7 +94,7 @@ bot.on('message', function (event) {
                             mNeedCare = null
                             mNeedAssisive = null
                             console.log('ACTION_WELFARE' + mIdentity + "/" + mNeedCare + "/" + mNeedAssisive)
-                            hsBOT.askLocationWithCarousel(event)
+                            // hsBOT.askLocationWithCarousel(event)
                             break
 
                         case ACTION_CHALLANGE:
