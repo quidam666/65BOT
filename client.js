@@ -8,7 +8,7 @@ var host = "https://65info.tw/api/welfare?"
 module.exports = {
     getwelfareConditionURL: function (city, identity, careRequire, assistiveRequire) {
 
-        console.log("client getwelfareConditionURL " +
+        console.log("Client getwelfareConditionURL " +
             city + "/" + identity + "/" + careRequire + "/" + assistiveRequire)
 
         var conditionURL

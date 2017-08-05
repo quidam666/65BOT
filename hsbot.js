@@ -288,7 +288,7 @@ module.exports = {
                 resolve(columns);
             }
             else {
-                reject(Error("(getActivityForJson) It broke"));
+                reject(Error("(getWelfareColumns) It broke"));
             }
         })
 
