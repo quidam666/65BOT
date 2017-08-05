@@ -1,6 +1,11 @@
 const util = require('util')
 
 module.exports = {
+
+    showUserText: function(event,message){
+        event.reply({ type: 'text', text: message})
+    },
+
     showWelcomeText: function (event, userProfile) {
         event.reply({ type: 'text', text: '哈囉，' + userProfile.displayName + ' 歡迎使用銀髮生活小幫手，來看看我們為您精選的資訊吧！' })
     },
@@ -232,7 +237,7 @@ module.exports = {
                 actions: [{
                     type: 'uri',
                     label: '詳細資料',
-                    uri: 'https://goo.gl/MAhiuo'
+                    uri: detail_url
                 },
                 {
                     type: 'postback',
