@@ -375,8 +375,7 @@ module.exports = {
         var columns
         module.exports.getActivityColumns(activities).then(function (result) {
             columns = result
-            console.log('(showActivitiesInCarousel)' + result + userProfile.displayName + " / "
-         + userProfile.name)
+            console.log('(showActivitiesInCarousel)' + zone +" / " + userProfile.displayName)
             // console.log("(Carousel) getActivityColumns " + util.inspect(columns, false, null))
 
             event.reply({
