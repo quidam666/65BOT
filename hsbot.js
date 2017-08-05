@@ -236,7 +236,7 @@ module.exports = {
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
 
-            console.log("[HSBOT] getWelfareColumnArray " + welfares.welfares[i])
+            console.log(welfares.welfares[i])
 
             console.log("[HSBOT] getWelfareColumnArray " +
             welfares.welfares[i].name +'/'+ welfares.welfares[i].photo_url)
