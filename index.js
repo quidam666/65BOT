@@ -184,6 +184,7 @@ bot.on('postback', function (event) {
 
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
+                hsBOT.showFindActivitiesInCity(mUserProfile.displayName, mCity)
                 showActivities(event, mPgClient, mUserProfile, mCity)
                 break;
 

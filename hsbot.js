@@ -6,6 +6,10 @@ module.exports = {
         event.reply({ type: 'text', text: message })
     },
 
+    showFindActivitiesInCity: function (name, city) {
+        event.reply({ type: 'text', text: '親愛的' + name + '，這是本月在' + city + '開的課程：' })
+    },
+
     showWelcomeText: function (event, userProfile) {
         event.reply({ type: 'text', text: '哈囉，' + userProfile.displayName + ' 歡迎使用銀髮生活小幫手，來看看我們為您精選的資訊吧！' })
     },
@@ -375,11 +379,9 @@ module.exports = {
         var columns
         module.exports.getActivityColumns(activities).then(function (result) {
             columns = result
-            console.log('(showActivitiesInCarousel)' + zone +" / " + userProfile.displayName)
+            console.log('(showActivitiesInCarousel)' + zone + " / " + userProfile.displayName)
             // console.log("(Carousel) getActivityColumns " + util.inspect(columns, false, null))
 
-            event.reply({type: 'text', text: '親愛的' + userProfile.displayName + '，這是本月在' + zone + '開的課程：' })
-            
             event.reply({
                 type: 'template',
                 altText: '親愛的' + userProfile.displayName + '，這是本月在' + zone + '開的課程：',
