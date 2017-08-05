@@ -59,13 +59,14 @@ bot.on('follow', function (event) {
 
 bot.on('message', function (event) {
 
-    console.log('(onMessage) ' + event)
+    console.log('(onMessage) ')
+    console.log(event)
 
     event.source.profile().then(function (profile) {
         mUserProfile = profile
         hsDataHelper.checkIfUserExist(mPgClient, mUserProfile, function (isExist) {
             console.log('(on message) UserisExist', isExist)
-            var message = event.message.text
+            var message = event.message.text.trim()
 
             logReceiveMessage(mUserProfile.userId, message)
 
@@ -82,6 +83,7 @@ bot.on('message', function (event) {
                 if (isMessageFromAction === true) {
                     mCurrentAction = message
                     console.log('(on message) mCurrentAction (2) ' + mCurrentAction)
+                    console.log(message)
 
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
@@ -96,16 +98,28 @@ bot.on('message', function (event) {
                             break
 
                         case ACTION_CHALLANGE:
-
+                            hsBOT.showDailyChallenge(event)
                             break
 
                         case ACTION_CONSULT:
                             hsBOT.getConsultCarousel(event)
                             break
                     }
-                } else if (mCurrentAction === undefined && isMessageFromAction === false) {
+                } else if (message == "謝謝" || message == "Thank you") {
+                    console.log(mUserProfile)
+                    hsBOT.replyYoureWelcome(event, mUserProfile)
+                } else if (message == "David") {
+                    hsBOT.reply65Text(event, "新創界小彭于晏，我們的實習妹都靠你了",'1', '138' )
+                } else if (message == "Manson") {
+                    hsBOT.reply65Text(event, "告別R20的人生勝利組，好人有好bot",'1', '120' )
+                } else if (message == "Jacob") {
+                    hsBOT.reply65Text(event, "好萌好萌的秘密",'2', '34' )
+                }
+
+                else if (mCurrentAction === undefined && isMessageFromAction === false) {
                     hsBOT.showNonSenseText(event, mUserProfile)
-                } else {
+                }
+                else {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
 
@@ -160,7 +174,7 @@ bot.on('postback', function (event) {
                 break
 
             case ACTION_CONSULT:
-                // findWelfares(event, message, userProfile)
+                hsBOT.showKnowMore(event, event.postback.data)
                 break
         }
     }

@@ -3,7 +3,7 @@ var need_care = '593a92dfd4fdab11003d20e8'
 var need_assistive = '593a92dfd4fdab11003d20ec'
 var id_low_income = '593a92dfd4fdab11003d20e5'
 var id_low_middle_income = '593a92dfd4fdab11003d20e6'
-var host = "https://65info.tw/api/welfare?"
+var host = "https://65info.tw/api/welfare?order=hot"
 
 module.exports = {
     getwelfareConditionURL: function (city, identity, careRequire, assistiveRequire) {
