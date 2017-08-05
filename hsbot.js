@@ -235,7 +235,7 @@ module.exports = {
 
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
-            var activity = {
+            var welfare = {
                 thumbnailImageUrl: HOST + welfares.welfares[i].photo_url,
                 title: welfares.welfares[i].institution,
                 text: welfares.welfares[i].name,
@@ -245,9 +245,11 @@ module.exports = {
                     uri: welfares.welfares[i].detail_url
                 }]
             }
-            columns.push(activity)
+            columns.push(welfare)
+            console.log(welfare)
         }
 
+        console.log(columns)
         console.log("[HSBOT] getWelfareColumnArray " + columns.length)
         return columns
     },
@@ -284,11 +286,11 @@ module.exports = {
         var promise = new Promise(function (resolve, reject) {
             var columns
             columns = module.exports.getWelfareColumnArray(welfares, 0, 5)
-            if (columns != undefined) {
-                resolve(columns);
+            if (columns == false) {
+                reject(Error("(getWelfareColumns) It broke"));
             }
             else {
-                reject(Error("(getWelfareColumns) It broke"));
+                resolve(columns);
             }
         })
         return promise
