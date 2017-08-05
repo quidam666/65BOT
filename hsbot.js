@@ -236,21 +236,23 @@ module.exports = {
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
             var welfare = {
-                thumbnailImageUrl: HOST + welfares.welfares[i].photo_url,
+                thumbnailImageUrl: "https://example.com/bot/images/item1.jpg",
                 title: welfares.welfares[i].institution,
                 text: welfares.welfares[i].name,
                 actions: [{
                     type: 'uri',
                     label: '詳細資料',
-                    uri: welfares.welfares[i].url
-                },{
-                    type: 'uri',
-                    label: 'test',
-                    uri: "www.google.com"
-                },]
+                    uri: "www.google.com.tw"
+                },
+                {
+                    type: 'postback',
+                    label: '我要報名',
+                    data: "test"
+                }]
             }
-            columns.push(welfare)
+            console.log("HEEEEEEEER")
             console.log(welfare)
+            columns.push(welfare)
         }
 
         console.log("[HSBOT] getWelfareColumnArray " + columns.length)
@@ -405,13 +407,13 @@ module.exports = {
     },
 
     showelfareInCarousel: function (event, userProfile, welfares) {
-        if (welfares.length == 0) {
+        if (welfares.welfares.length == 0) {
             event.reply({ type: 'text', text: "目前沒有適合您的福利，請打服務專線 0933-288936，有專人為您服務喔" })
         } else {
             module.exports.getWelfareColumns(welfares).then(function (result) {
-                console.log("showelfareInCarousel final stage")
-                console.log(result)
-                console.log(event)
+                console.log("showelfareInCarousel final stage "+ result.length)
+                // console.log(result)
+                // console.log(event)
 
                 event.reply({
                     type: 'template',
