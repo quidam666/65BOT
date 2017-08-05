@@ -222,8 +222,6 @@ function findWelfares(event) {
 function getWelfare(event) {
     client.getWelfare(mCity, mIdentity, mNeedCare, mNeedAssisive).then(function (result, reject) {
         var welfares = JSON.parse(result)
-        // show welfare
-        console.log('[Index getwelfare] ' + welfares.welfares[0])
         hsBOT.showelfareInCarousel(event, mUserProfile, welfares)
     })
 }
