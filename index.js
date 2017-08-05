@@ -90,9 +90,9 @@ bot.on('message', function (event) {
                             break;
 
                         case ACTION_WELFARE:
-                            mIdentity == undefined
-                            mNeedCare == undefined
-                            mNeedAssisive == undefined
+                            mIdentity = undefined
+                            mNeedCare = undefined
+                            mNeedAssisive = undefined
                             hsBOT.askLocationWithCarousel(event)
                             break
 
