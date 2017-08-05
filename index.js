@@ -178,8 +178,7 @@ function logReceiveMessage(userId, message) {
 
 bot.on('postback', function (event) {
     console.log('(postback) ', event)
-
-    // hsBOT.repeatUserText(event, event.postback.data)
+    hsBOT.repeatUserText(event, event.postback.data)
 
     if (checkCity(event.postback.data) === true) {
         mCity = event.postback.data
