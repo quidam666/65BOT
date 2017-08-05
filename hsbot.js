@@ -305,15 +305,15 @@ module.exports = {
             altText: '請問是否有照護需求呢？',
             template: {
                 type: 'confirm',
-                text: '請問是有照護需求呢？',
+                text: '請問是否有照護需求呢？',
                 actions: [{
-                    type: 'message',
+                    type: 'postback',
                     label: '有的',
-                    text: 'care_needed'
+                    data: 'care_needed'
                 }, {
-                    type: 'message',
+                    type: 'postback',
                     label: '沒有',
-                    text: 'care_not_needed'
+                    data: 'care_not_needed'
                 }]
             }
         })
@@ -325,15 +325,15 @@ module.exports = {
             altText: '請問是否有輔具需求呢？',
             template: {
                 type: 'confirm',
-                text: '請問是有輔具需求呢？',
+                text: '請問是否有輔具需求呢？',
                 actions: [{
-                    type: 'message',
+                    type: 'postback',
                     label: '有的',
-                    text: 'assistive_needed'
+                    data: 'assistive_needed'
                 }, {
-                    type: 'message',
+                    type: 'postback',
                     label: '沒有',
-                    text: 'assistive_not_needed'
+                    data: 'assistive_not_needed'
                 }]
             }
         })

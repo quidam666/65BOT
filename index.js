@@ -58,11 +58,13 @@ bot.on('follow', function (event) {
 
 
 bot.on('message', function (event) {
+
+    console.log('(onMessage) ' + event)
+
     event.source.profile().then(function (profile) {
         mUserProfile = profile
         hsDataHelper.checkIfUserExist(mPgClient, mUserProfile, function (isExist) {
             console.log('(on message) isExist', isExist)
-            console.log('(on message) message ', message)
             var message = event.message.text
 
             logReceiveMessage(mUserProfile.userId, message)
