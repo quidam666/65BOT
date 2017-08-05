@@ -6,7 +6,10 @@ var id_low_middle_income = '593a92dfd4fdab11003d20e6'
 var host = "https://65info.tw/api/welfare?"
 
 module.exports = {
-    getwelfareConditionURL: function (city, identity, careRequre, assistiveRequire) {
+    getwelfareConditionURL: function (city, identity, careRequire, assistiveRequire) {
+
+        console.log("client getwelfareConditionURL " +
+            city + "/" + identity + "/" + careRequire + "/" + assistiveRequire)
 
         var conditionURL
         var addConditionString = "&conditions[]="
@@ -22,7 +25,7 @@ module.exports = {
         }
 
         // need care
-        if (careRequre === "care_needed") {
+        if (careRequire === "care_needed") {
             conditionURL = conditionURL + addConditionString + need_care
         }
 
