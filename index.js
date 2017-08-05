@@ -25,7 +25,8 @@ const CHANNEL_SECRET = 'dc7226b76dab1aa9eff8c4c8aa45ca58'
 const CITY_ARRAY = ["台北市", "新北市", "基隆", "桃園", "新竹", "苗栗", "台中", "彰化", "南投", "雲林", "嘉義", "台南", "高雄", "屏東", "宜蘭", "花蓮", "台東", "澎湖", "金門", "連江"]
 
 pg.defaults.ssl = true
-pg.connect(process.env.DATABASE_URL, function (err, client) {
+var pg_url = 'postgres://hbmfcaiwjdhxcy:54afb20d7cd7fe39bfa74ca09dbf2dff0e1744fb0b4feb87346fb63f796ca509@ec2-54-83-48-188.compute-1.amazonaws.com:5432/d4i0lq3si1f9h9'
+pg.connect(pg_url, function (err, client) {
     if (err) throw err
     mPgClient = client
     console.log('Connected to postgres! Getting schemas...')
@@ -98,19 +99,19 @@ bot.on('message', function (event) {
                 } else {
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
-                            // findActivities(event, message, userProfile)
+
                             break;
 
                         case ACTION_WELFARE:
-                            // findWelfares(event, message, userProfile)
+
                             break
 
                         case ACTION_GROUP:
-                            // hsBOT.showNonSenseText(event, userProfile)
+
                             break
 
                         case ACTION_CONSULT:
-                            // hsBOT.showNonSenseText(event, userProfile)
+
                             break
                     }
                 }
@@ -119,66 +120,10 @@ bot.on('message', function (event) {
     })
 })
 
-function isAction(message) {
-    if (message === ACTION_ACTIVITY || message === ACTION_WELFARE
-        || message === ACTION_CHALLANGE || message === ACTION_CONSULT) {
-        return true
-    } else {
-        return false
-    }
-}
-
-function showActivities(event, pgClient, userProfile, zone) {
-    console.log("(showActivities) " + zone + userProfile.displayName)
-    // query activities with location
-    hsDataHelper.getActivitiesFromDB(pgClient, zone, function (activities) {
-        // reply carousel to user
-        hsBOT.showActivitiesInCarousel(event, userProfile, zone, JSON.parse(activities))
-    })
-}
-
-function getIndex(str) {
-    return str.split('=')[1];
-}
-
-function checkCity(city) {
-    return (CITY_ARRAY.includes(city))
-}
-
-function checkZone(zone) {
-    return (TPE_ZONE_ARRAY.includes(zone) || NEWTPE_ZONE_ARRAY.includes(zone))
-}
-
-function getWelfare() {
-    client.getWelfare("新北市", "id_low_income", "true", "true").then(function (result, reject) {
-        var walfare = JSON.parse(result)
-    })
-
-}
-
-
-function logReceiveMessage(userId, message) {
-    console.log('(logReceiveMessage) ' + userId + ' ' + message)
-
-    var options = {
-        uri: 'https://tracker.dashbot.io/track?platform=generic&v=0.8.2-rest&type=incoming&apiKey=s20llrJ6uakltBPH8QZnk3ab14Mz3mxebj0Zhje3',
-        method: 'POST',
-        json: {
-            "text": message,
-            "userId": userId
-        }
-    };
-
-    request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log('(logReceiveMessage) + body.id ' + body.id) // Print the shortened url.
-        }
-    })
-}
 
 bot.on('postback', function (event) {
     console.log('(postback) ', event)
-    
+
     if (checkCity(event.postback.data) === true) {
         mCity = event.postback.data
 
@@ -220,6 +165,69 @@ bot.on('unfollow', function (event) {
 bot.on('leave', function (event) {
     console.log('leave! ', event)
 })
+
+
+function isAction(message) {
+    if (message === ACTION_ACTIVITY || message === ACTION_WELFARE
+        || message === ACTION_CHALLANGE || message === ACTION_CONSULT) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function showActivities(event, pgClient, userProfile, zone) {
+    console.log("(showActivities) " + zone + userProfile.displayName)
+    // query activities with location
+    hsDataHelper.getActivitiesFromDB(pgClient, zone, function (activities) {
+        // reply carousel to user
+        hsBOT.showActivitiesInCarousel(event, userProfile, zone, JSON.parse(activities))
+    })
+}
+
+function findWelfare(event) {
+
+}
+
+function getWelfare(city, identity, need_care, need_assisive) {
+    client.getWelfare(city, identity, need_care, need_assisive).then(function (result, reject) {
+        var walfare = JSON.parse(result)
+    })
+
+}
+
+function getIndex(str) {
+    return str.split('=')[1];
+}
+
+function checkCity(city) {
+    return (CITY_ARRAY.includes(city))
+}
+
+function checkZone(zone) {
+    return (TPE_ZONE_ARRAY.includes(zone) || NEWTPE_ZONE_ARRAY.includes(zone))
+}
+
+
+function logReceiveMessage(userId, message) {
+    console.log('(logReceiveMessage) ' + userId + ' ' + message)
+
+    var options = {
+        uri: 'https://tracker.dashbot.io/track?platform=generic&v=0.8.2-rest&type=incoming&apiKey=s20llrJ6uakltBPH8QZnk3ab14Mz3mxebj0Zhje3',
+        method: 'POST',
+        json: {
+            "text": message,
+            "userId": userId
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log('(logReceiveMessage) + body.id ' + body.id) // Print the shortened url.
+        }
+    })
+}
+
 
 const app = express()
 const linebotParser = bot.parser()
