@@ -235,6 +235,9 @@ module.exports = {
 
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
+
+            console.log("[HSBOT] getWelfareColumnArray " + welfares.welfares[i].toString)
+
             var activity = {
                 thumbnailImageUrl: HOST + welfares.welfares[i].photo_url,
                 title: welfares.welfares[i].name,
@@ -248,7 +251,7 @@ module.exports = {
             columns.push(activity)
         }
 
-        console.log("(getColumnArray) finish " + columns.length)
+        console.log("[HSBOT] getWelfareColumnArray " + columns.length)
         return columns
     },
 
