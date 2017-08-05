@@ -237,7 +237,7 @@ module.exports = {
                 actions: [{
                     type: 'uri',
                     label: '詳細資料',
-                    uri: detail_url
+                    uri: activities[i].detail_url
                 },
                 {
                     type: 'postback',
