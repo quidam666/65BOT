@@ -93,6 +93,7 @@ bot.on('message', function (event) {
                             mIdentity = null
                             mNeedCare = null
                             mNeedAssisive = null
+                            console.log('ACTION_WELFARE' + mIdentity + "/" + mNeedCare + "/" + mNeedAssisive)
                             hsBOT.askLocationWithCarousel(event)
                             break
 
@@ -136,7 +137,6 @@ bot.on('postback', function (event) {
 
     if (checkCity(event.postback.data) === true) {
         mCity = event.postback.data
-
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
                 // hsBOT.showFindActivitiesInCity(event,mUserProfile.displayName, mCity)
