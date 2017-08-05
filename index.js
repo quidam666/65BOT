@@ -12,6 +12,9 @@ var mPgClient
 var mCity
 var mCurrentAction
 var mUserProfile
+var mIdentity
+var mNeedCare
+var mNeedAssisive
 
 const ACTION_WELFARE = "找福利"
 const ACTION_ACTIVITY = "找活動"
@@ -23,9 +26,11 @@ const CHANNEL_ID = '1528157130'
 const CHANNEL_SECRET = 'dc7226b76dab1aa9eff8c4c8aa45ca58'
 
 const CITY_ARRAY = ["台北市", "新北市", "基隆", "桃園", "新竹", "苗栗", "台中", "彰化", "南投", "雲林", "嘉義", "台南", "高雄", "屏東", "宜蘭", "花蓮", "台東", "澎湖", "金門", "連江"]
+const IDENTITY_ARRAY = ["id_normal", "id_low_middle_income", "id_low_income"]
 
 pg.defaults.ssl = true
 var pg_url = 'postgres://hbmfcaiwjdhxcy:54afb20d7cd7fe39bfa74ca09dbf2dff0e1744fb0b4feb87346fb63f796ca509@ec2-54-83-48-188.compute-1.amazonaws.com:5432/d4i0lq3si1f9h9'
+
 pg.connect(pg_url, function (err, client) {
     if (err) throw err
     mPgClient = client
@@ -134,7 +139,7 @@ bot.on('postback', function (event) {
                 break;
 
             case ACTION_WELFARE:
-                findWelfares(event, message, mUserProfile)
+                findWelfares(event)
                 break
         }
     } else if (event.postback.data === "其他區域") {
@@ -142,11 +147,13 @@ bot.on('postback', function (event) {
     } else {
         switch (mCurrentAction) {
             case ACTION_ACTIVITY:
-                hsBOT.showApplyInfo(event, event.postback.data)
+                var contactInfo = event.postback.data
+                hsBOT.showApplyInfo(event, contactInfo)
                 break;
 
             case ACTION_WELFARE:
-                // findWelfares(event, message, userProfile)
+                var welfareCondition = event.postback.data
+                checkWelfareCondition(event, welfareCondition)
                 break
 
             case ACTION_CONSULT:
@@ -166,6 +173,17 @@ bot.on('leave', function (event) {
     console.log('leave! ', event)
 })
 
+function checkWelfareCondition(event, condition) {
+    if (IDENTITY_ARRAY.includes(condition)) {
+        mIdentity = condition
+    } else if (condition === "care_needed" || condition === "care_not_needed") {
+        mNeedCare = condition
+    } else if (condition === "assistive_needed" || condition === "assistive_not_needed") {
+        mNeedAssisive = condition
+    } else {
+        findWelfares(event)
+    }
+}
 
 function isAction(message) {
     if (message === ACTION_ACTIVITY || message === ACTION_WELFARE
@@ -185,15 +203,23 @@ function showActivities(event, pgClient, userProfile, zone) {
     })
 }
 
-function findWelfare(event) {
-
+function findWelfares(event) {
+    if (mIdentity === undefined) {
+        hsBOT.askIdentify(event)
+    } else if (mNeedCare === undefined) {
+        hsBOT.askIfNeedCare(event)
+    } else if (mNeedAssisive === undefined) {
+        hsBOT.askIfNeedAssistive(event)
+    } else {
+        getWelfare(mCity, mIdentity, mNeedCare, mNeedAssisive)
+    }
 }
 
 function getWelfare(city, identity, need_care, need_assisive) {
     client.getWelfare(city, identity, need_care, need_assisive).then(function (result, reject) {
-        var walfare = JSON.parse(result)
+        var welfare = JSON.parse(result)
+        // show welfare
     })
-
 }
 
 function getIndex(str) {

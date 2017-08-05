@@ -309,11 +309,11 @@ module.exports = {
                 actions: [{
                     type: 'message',
                     label: '有的',
-                    text: '有照護需求'
+                    text: 'care_needed'
                 }, {
                     type: 'message',
                     label: '沒有',
-                    text: '無照護需求'
+                    text: 'care_not_needed'
                 }]
             }
         })
@@ -329,11 +329,11 @@ module.exports = {
                 actions: [{
                     type: 'message',
                     label: '有的',
-                    text: '有輔具需求'
+                    text: 'assistive_needed'
                 }, {
                     type: 'message',
                     label: '沒有',
-                    text: '無輔具需求'
+                    text: 'assistive_not_needed'
                 }]
             }
         })
@@ -351,15 +351,15 @@ module.exports = {
                 actions: [{
                     type: 'postback',
                     label: '一般民眾',
-                    data: '一般民眾'
+                    data: 'id_normal'
                 }, {
                     type: 'postback',
                     label: '中低收入戶',
-                    data: '中低收入戶'
+                    data: 'id_low_middle_income'
                 }, {
                     type: 'postback',
                     label: '低收入戶',
-                    data: '低收入戶'
+                    data: 'id_low_income'
                 }]
             }
         })
