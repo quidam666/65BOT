@@ -243,7 +243,11 @@ module.exports = {
                     type: 'uri',
                     label: '詳細資料',
                     uri: welfares.welfares[i].url
-                }]
+                },{
+                    type: 'uri',
+                    label: 'test',
+                    uri: "www.google.com"
+                },]
             }
             columns.push(welfare)
             console.log(welfare)
