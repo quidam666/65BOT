@@ -215,12 +215,12 @@ function findWelfares(event) {
     } else if (mNeedAssisive == null) {
         hsBOT.askIfNeedAssistive(event)
     } else {
-        getWelfare(event, mCity, mIdentity, mNeedCare, mNeedAssisive)
+        getWelfare(event)
     }
 }
 
-function getWelfare(city, identity, need_care, need_assisive) {
-    client.getWelfare(city, identity, need_care, need_assisive).then(function (result, reject) {
+function getWelfare(event) {
+    client.getWelfare(mCity, mIdentity, mNeedCare, mNeedAssisive).then(function (result, reject) {
         var welfares = JSON.parse(result)
         // show welfare
         console.log('[Index getwelfare] ' + welfares.welfares[0])
