@@ -85,7 +85,7 @@ bot.on('message', function (event) {
 
                     switch (mCurrentAction) {
                         case ACTION_ACTIVITY:
-                            // hsBOT.askLocation(event)
+                            console.log('ACTION_ACTIVITY' + mIdentity + "/" + mNeedCare + "/" + mNeedAssisive)
                             hsBOT.askLocationWithCarousel(event)
                             break;
 
