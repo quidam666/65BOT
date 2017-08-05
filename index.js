@@ -34,7 +34,7 @@ var pg_url = 'postgres://hbmfcaiwjdhxcy:54afb20d7cd7fe39bfa74ca09dbf2dff0e1744fb
 pg.connect(pg_url, function (err, client) {
     if (err) throw err
     mPgClient = client
-    console.log('Connected to postgres! Getting schemas...')
+    console.log('Connected to postgres! Ready to go!!')
 })
 
 var bot = linebot({
@@ -64,7 +64,7 @@ bot.on('message', function (event) {
     event.source.profile().then(function (profile) {
         mUserProfile = profile
         hsDataHelper.checkIfUserExist(mPgClient, mUserProfile, function (isExist) {
-            console.log('(on message) isExist', isExist)
+            console.log('(on message) UserisExist', isExist)
             var message = event.message.text
 
             logReceiveMessage(mUserProfile.userId, message)
@@ -90,6 +90,9 @@ bot.on('message', function (event) {
                             break;
 
                         case ACTION_WELFARE:
+                            mIdentity == undefined
+                            mNeedCare == undefined
+                            mNeedAssisive == undefined
                             hsBOT.askLocationWithCarousel(event)
                             break
 
@@ -220,6 +223,7 @@ function getWelfare(city, identity, need_care, need_assisive) {
     client.getWelfare(city, identity, need_care, need_assisive).then(function (result, reject) {
         var welfare = JSON.parse(result)
         // show welfare
+        console.log('[Index getwelfare] ' + welfare.welfares[0])
     })
 }
 
@@ -254,7 +258,6 @@ function logReceiveMessage(userId, message) {
         }
     })
 }
-
 
 const app = express()
 const linebotParser = bot.parser()
