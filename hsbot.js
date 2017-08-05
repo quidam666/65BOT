@@ -1,4 +1,5 @@
 const util = require('util')
+const HOST = "https://65info.tw/"
 
 module.exports = {
 
@@ -229,6 +230,28 @@ module.exports = {
         return module.exports.getActivitiesColumn(activities, startIndex, startIndex + 4)
     },
 
+    getWelfareColumnArray: function (welfares, startIndex, endIndex) {
+        console.log("(getWelfareColumnArray) startIndex " + startIndex + " endIndex " + endIndex)
+
+        var columns = []
+        for (var i = startIndex, len = endIndex; i < endIndex; i++) {
+            var activity = {
+                thumbnailImageUrl: HOST + welfares.welfares[i].photo_url,
+                title: welfares.welfares[i].name,
+                text: welfares.welfares[i].institution,
+                actions: [{
+                    type: 'uri',
+                    label: '詳細資料',
+                    uri: welfares.welfares[i].detail_url
+                }]
+            }
+            columns.push(activity)
+        }
+
+        console.log("(getColumnArray) finish " + columns.length)
+        return columns
+    },
+
     getColumnArray: function (activities, startIndex, endIndex) {
         console.log("(getColumnArray) startIndex " + startIndex + " endIndex " + endIndex)
 
@@ -256,17 +279,29 @@ module.exports = {
         return columns
     },
 
-    // return JSONArray
+    // return Column Array
+    getWelfareColumns: function (welfares) {
+        var promise = new Promise(function (resolve, reject) {
+            var columns
+            columns = module.exports.getWelfareColumnArray(welfares, 0, 5)
+            if (columns !== undefined) {
+                resolve(columns);
+            }
+            else {
+                reject(Error("(getActivityForJson) It broke"));
+            }
+        })
+
+        return promise
+    },
+
+
+    // return Column Array
     getActivityColumns: function (activities) {
         console.log("(getActivityForJson) " + activities.length)
         var promise = new Promise(function (resolve, reject) {
             var columns
             columns = module.exports.getColumnArray(activities, 0, 5)
-            // if (activities.length > 5) {
-            //     columns = module.exports.getColumnArray(activities, 0, 5)
-            // } else {
-            //     columns = module.exports.getColumnArray(activities, 0, activities.length)
-            // }
             if (columns !== undefined) {
                 resolve(columns);
             }
@@ -365,9 +400,22 @@ module.exports = {
         })
     },
 
-    showelfareInCarousel: function(event, welfares){
-        
-
+    showelfareInCarousel: function (event, welfares) {
+        if (welfares.length == 0) {
+            event.reply({ type: 'text', text: "目前沒有適合您的福利，請打服務專線 0933-288936，有專人為您服務喔" })
+        } else {
+            module.exports.getWelfareColumns(welfares).then(function (result) {
+                columns = result
+                event.reply({
+                    type: 'template',
+                    altText: '親愛的' + userProfile.displayName + '，這是您可以申請的福利！',
+                    template: {
+                        type: 'carousel',
+                        columns: columns
+                    }
+                })
+            })
+        }
     },
 
     showActivitiesInCarousel: function (event, userProfile, zone, activities) {
