@@ -6,7 +6,7 @@ module.exports = {
         event.reply({ type: 'text', text: message })
     },
 
-    showFindActivitiesInCity: function (name, city) {
+    showFindActivitiesInCity: function (event, name, city) {
         event.reply({ type: 'text', text: '親愛的' + name + '，這是本月在' + city + '開的課程：' })
     },
 
