@@ -236,18 +236,13 @@ module.exports = {
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
             var welfare = {
-                thumbnailImageUrl: "https://example.com/bot/images/item1.jpg",
+                thumbnailImageUrl: HOST+welfares.welfares[i].photo_url,
                 title: welfares.welfares[i].institution,
                 text: welfares.welfares[i].name,
                 actions: [{
                     type: 'uri',
                     label: '詳細資料',
-                    uri: "www.google.com.tw"
-                },
-                {
-                    type: 'postback',
-                    label: '我要報名',
-                    data: "test"
+                    uri: welfares.welfares[i].url
                 }]
             }
             console.log("HEEEEEEEER")
@@ -411,16 +406,17 @@ module.exports = {
             event.reply({ type: 'text', text: "目前沒有適合您的福利，請打服務專線 0933-288936，有專人為您服務喔" })
         } else {
             module.exports.getWelfareColumns(welfares).then(function (result) {
-                console.log("showelfareInCarousel final stage "+ result.length)
-                // console.log(result)
+                console.log("showelfareInCarousel final stage " + result.length)
+                console.log(result)
                 // console.log(event)
+                var columns = result
 
                 event.reply({
                     type: 'template',
                     altText: '親愛的',
                     template: {
                         type: 'carousel',
-                        columns: result
+                        columns: columns
                     }
                 })
             }).catch(function (error) {
