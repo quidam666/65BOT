@@ -326,7 +326,7 @@ module.exports = {
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
             var activity = {
-                thumbnailImageUrl: "https://example.com/bot/images/item1.jpg",
+                thumbnailImageUrl: activities[i].category_url,
                 title: activities[i].name,
                 text: activities[i].content,
                 actions: [{

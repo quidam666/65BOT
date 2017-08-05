@@ -29,7 +29,7 @@ const CITY_ARRAY = ["台北市", "新北市", "基隆", "桃園", "新竹", "苗
 const IDENTITY_ARRAY = ["id_normal", "id_low_middle_income", "id_low_income"]
 
 pg.defaults.ssl = true
-var pg_url = 'postgres://hbmfcaiwjdhxcy:54afb20d7cd7fe39bfa74ca09dbf2dff0e1744fb0b4feb87346fb63f796ca509@ec2-54-83-48-188.compute-1.amazonaws.com:5432/d4i0lq3si1f9h9'
+var pg_url = 'postgres://cbdlhljmyyxgfp:1b6fc08dbf76efa6e5550f8cfc1ed824533d0e4f1b96c2505739078d14e385a9@ec2-54-243-107-66.compute-1.amazonaws.com:5432/dbb8n289k4n5f6'
 
 pg.connect(pg_url, function (err, client) {
     if (err) throw err
