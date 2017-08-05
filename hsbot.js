@@ -235,9 +235,6 @@ module.exports = {
 
         var columns = []
         for (var i = startIndex, len = endIndex; i < endIndex; i++) {
-
-            console.log(welfares.welfares[i])
-
             var activity = {
                 thumbnailImageUrl: HOST + welfares.welfares[i].photo_url,
                 title: welfares.welfares[i].institution,
@@ -287,14 +284,13 @@ module.exports = {
         var promise = new Promise(function (resolve, reject) {
             var columns
             columns = module.exports.getWelfareColumnArray(welfares, 0, 5)
-            if (columns !== undefined) {
+            if (columns != undefined) {
                 resolve(columns);
             }
             else {
                 reject(Error("(getWelfareColumns) It broke"));
             }
         })
-
         return promise
     },
 
@@ -408,6 +404,7 @@ module.exports = {
             event.reply({ type: 'text', text: "目前沒有適合您的福利，請打服務專線 0933-288936，有專人為您服務喔" })
         } else {
             module.exports.getWelfareColumns(welfares).then(function (result) {
+                console.log("showelfareInCarousel final stage")
                 columns = result
                 event.reply({
                     type: 'template',
